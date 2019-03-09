@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
   username: {
+  
       type: String,
       unique: true,
       required: [true, "username is required"]
   },
   password: {
+      
       type: String,
       unique: false,
       validate: {
@@ -19,6 +21,33 @@ const usersSchema = new Schema({
       },
       required: [true, "password is required"]
   },
+  email: {
+    trim: true,
+    type: String,
+    unique: true,
+    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+  },
+
+  firstname: {
+    type: String,
+    unique: true,
+    required: [true, "First name is required"]
+},
+lastname: {
+  type: String,
+  unique: true,
+  required: [true, "Last name is required"]
+},
+orgname: {
+  type: String,
+  unique: true,
+  required: [true, "Organization name is required"]
+},
+orgaddress: {
+  type: String,
+  unique: true,
+  required: [true, "Organzation address is required"]
+},
   admin: {
     type: Boolean,
     unique: false,

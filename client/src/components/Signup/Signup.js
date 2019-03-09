@@ -8,7 +8,7 @@ class Signup extends Component {
         validPassword: false,
         confirmPassword: false
     }
-    
+
     componentDidUpdate() {
         this.validatePassword();
         this.confirmPassword();
@@ -61,10 +61,26 @@ class Signup extends Component {
             <div>
                 <h2 className="loginTitle title-font">Signup</h2>
                 <hr />
-                {this.props.message?(
+                {this.props.message ? (
                     <Alert className="animated fadeIn" color="danger">{this.props.message}</Alert>
-                ): (<></>)}
+                ) : (<></>)}
                 <Form>
+                    <FormGroup>
+                        <Label for="firstname">First Name</Label>
+                        <Input type="text" name="firstname" id="firstname" placeholder="First Name" value={this.props.firstname} onChange={this.props.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="lastname">Last Name</Label>
+                        <Input type="text" name="lastname" id="lastname" placeholder="Last Name" value={this.props.lastname} onChange={this.props.handleInputChange}  />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="orgname">Organization</Label>
+                        <Input type="text" name="orgname" id="orgname" placeholder="Organization" value={this.props.orgname} onChange={this.props.handleInputChange}  />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="orgaddress">Organization Address</Label>
+                        <Input type="text" name="orgaddress" id="orgaddress" placeholder="Organization Address" value={this.props.orgaddress} onChange={this.props.handleInputChange} />
+                    </FormGroup>
                     <FormGroup>
                         <Label for="username">Username</Label>
                         <Input type="text" name="username" id="username" placeholder="username" value={this.props.username} onChange={this.props.handleInputChange} valid={this.state.validUsername} />
@@ -76,14 +92,14 @@ class Signup extends Component {
                     <FormGroup>
                         <Label for="confirmPassword">Confirm Password</Label>
                         <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="confirm password" value={this.props.confirmPassword} onChange={this.props.handleInputChange} valid={this.state.confirmPassword} />
-                        <FormText>at least 8 characters, 1 capital & 1 number</FormText>
+                        <FormText>At least 8 characters, 1 capital & 1 number, no special characters.</FormText>
                     </FormGroup>
                     {/* if all fields are valid, allow the user to submit the form */}
                     {(this.state.validUsername && this.state.validPassword && this.state.confirmPassword) ? (
                         <Button onClick={this.props.handleSignup} color="success" block>Signup</Button>
                     ) : (
-                        <Button onClick={this.props.handleSignup} color="danger" block disabled>Signup</Button>
-                    )}
+                            <Button onClick={this.props.handleSignup} color="danger" block disabled>Signup</Button>
+                        )}
                     <p className="signupLink">
                         <Link to="/login">already have an account?  Sign in here</Link>
                     </p>
