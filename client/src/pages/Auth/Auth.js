@@ -53,7 +53,12 @@ class Auth extends Component {
     if (this.state.username && this.state.password) {
       API.signup({
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        orgname: this.state.orgname,
+        orgaddress: this.state.orgaddress,
+        email: this.state.email
       }).then(user => {
         if (user.data.loggedIn) {
           this.setState({
