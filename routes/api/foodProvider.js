@@ -3,24 +3,12 @@ const passport = require("../../config/passport");
 const db = require("../../models");
 const authMiddleware = require("../../config/middleware/authMiddleware");
 
-// /api/users/login
-// route to login the user
-router.post("/login", passport.authenticate("local", {
-  failureRedirect: "/api/users/unauthorized",
-  failureFlash : true
-}), function (req, res, next) {
-  console.log("sign in successful")
-  res.json({
-    user: req.user,
-    loggedIn: true
-  });
-});
+
 
 // /api/users/signup
 // route to logout the user
-router.post("/signup", function(req, res, next) {
-  console.log(req.body);
-  db.User.findOne({username: req.body.username}, function(err, user) {
+router.post("/food", function(req, res, next) {
+  db.User.find({username: req.body.username}, function(err, user) {
     if (err) throw err;
     if (user) {
       console.log("user already exists")
@@ -28,7 +16,7 @@ router.post("/signup", function(req, res, next) {
     }
     if (!user) {
       let newUser = new db.User({
-        firstname: req.body.firstname,
+        firsname: req.body.firsname,
         lastname: req.body.lastname,
         orgname: req.body.orgname,
         orgaddress: req.body.orgaddress,
