@@ -4,13 +4,13 @@ const encryptedPassword = '126891c03fef8f5fc1e1d8714d82bb';
 const transport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'thisdavejdemo@gmail.com',
+        user: 'SCKitchen1864@gmail.com',
         pass: crypt.decrypt(encryptedPassword),
     },
 });
 module.exports = function sendEmail(to, subject, message) {
     const mailOptions = {
-        from: 'thisdavejdemo@gmail.com',
+        from: 'SCKitchen1864@gmail.com',
         to,
         subject,
         html: message,
