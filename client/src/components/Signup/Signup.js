@@ -82,6 +82,10 @@ class Signup extends Component {
                         <Input type="text" name="orgaddress" id="orgaddress" placeholder="Organization Address" value={this.props.orgaddress} onChange={this.props.handleInputChange} />
                     </FormGroup>
                     <FormGroup>
+                        <Label for="email">Email Address</Label>
+                        <Input type="email" name="email" id="email" placeholder="Email Address" value={this.props.email} onChange={this.props.handleInputChange} valid={this.state.email} />
+                    </FormGroup>
+                    <FormGroup>
                         <Label for="username">Username</Label>
                         <Input type="text" name="username" id="username" placeholder="username" value={this.props.username} onChange={this.props.handleInputChange} valid={this.state.validUsername} />
                     </FormGroup>
