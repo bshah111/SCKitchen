@@ -8,6 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 const logger = require("morgan");
 const flash = require('connect-flash');
+const sendEmail = require('../send-email');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,6 +30,12 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(routes);
+
+function sendNotification(message) {
+        sendEmail('thisdavej@gmail.com, john@doe.com', 'Meals  available  notification', message);
+        console.log('Email sent');
+    }
+
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SCKitchen", { useNewUrlParser: true }, function(err) {
     if (err) throw err;
