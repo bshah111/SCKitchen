@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import { Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
+import { Form, FormGroup, Label, Input, FormText, Alert,Row,Col} from 'reactstrap';
 import "./Profile.scss";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom"
-import API from "../../utils/API"
+import API from "../../utils/API";
 
 
 class Profile extends Component {
@@ -46,7 +46,8 @@ class Profile extends Component {
                     <div className="profileBox">
                         <h1 id="userTitle">Welcome {this.state.user.username}</h1>
                         <div>
-            <Form>
+                        <Row>
+    <Col sm><Form>
                 <FormGroup>
                     <Label for="locname">Location Name</Label>
                     <Input type="text" name="locname" id="locname" placeholder="Location Name" value={this.props.locname} onChange={this.props.handleInputChange} />
@@ -68,7 +69,15 @@ class Profile extends Component {
                     <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" value={this.props.pickup} onChange={this.props.handleInputChange}  />
                 </FormGroup>
 
-            </Form>
+            </Form></Col>
+    <Col sm>
+    <Label for="claim it">Claim it!</Label>
+    </Col>
+    <Col sm>    
+    <Label for="claimed">Already claimed</Label>
+    </Col>
+  </Row>
+            
         </div>
                     </div>
                     
