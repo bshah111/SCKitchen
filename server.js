@@ -8,7 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 const logger = require("morgan");
 const flash = require('connect-flash');
-const sendEmail = require('../send-email');
+const sendEmail = require('./models/sendEmail');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
