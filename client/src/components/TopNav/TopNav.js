@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Jumbotron, Container,  } from 'reactstrap';
+import Wrapper from "./Wrapper";
 import "./TopNav.scss";
 import API from "../../utils/API";
 import {
@@ -92,7 +94,26 @@ export default class Navigation extends Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
+
+    <Wrapper>
+          <Jumbotron >
+            <Container >
+            
+               <h1 className="text-primary" id = "text-primary">SCKitchen</h1>
+               <p className="text-primary"> </p>
+               <p className="text-primary" id = "text-primary">Feeding People, Not Landfills/Recovering prepared but not served food from Confernces,Events,Resturants and Food Vendors.</p>
+            
+            </Container>
+          </Jumbotron>
+      
+                 
+      </Wrapper>
+                
             </div>
+
+
+           
+
         );
     }
 }

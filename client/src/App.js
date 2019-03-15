@@ -8,6 +8,8 @@ import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
 import { Container } from 'reactstrap';
 
+
+
 function App() {
   return (
       <Router>
@@ -23,9 +25,18 @@ function App() {
             </Switch>
           </Container>
           <Footer />
+         
         </div>
       </Router>
+  
+     
   );
+
+ 
+     
 }
+
+
+
 
 export default App;

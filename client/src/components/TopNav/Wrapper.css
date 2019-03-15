@@ -1,0 +1,20 @@
+.wrapper {
+    padding-top: 25px;
+    background: rgb(52, 134, 70);
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    justify-content: space-around;
+    align-content: center;
+    overflow: auto;
+  }
+
+  h1 {
+    text-align: Center;
+    
+  }
+
+  #text-primary {
+    color: #eabE00!important;
+}
