@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 
 
 const formattedSeconds = (sec) =>
-
    Math.floor(sec / 60) +
     ':' +
   ('0' + sec % 60).slice(-2)
   
-  
+    
 
 // This 
 class Stopwatch extends Component {
@@ -48,17 +47,11 @@ class Stopwatch extends Component {
         clearInterval(this.incrementer);
         this.setState({
           secondsElapsed: 0,
-          laps:[]
+        
         })
       }
 
-      handleLabClick() {
-        this.setState({
-          laps: this.state.laps.concat([this.state.secondsElapsed])
-        })
-      }
-
- 
+       
       render() {
         return(
 

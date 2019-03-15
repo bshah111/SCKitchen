@@ -17,6 +17,7 @@ import {
     DropdownItem,
 } from 'reactstrap';
 
+
 export default class Navigation extends Component {
 
     constructor(props) {
@@ -101,7 +102,9 @@ export default class Navigation extends Component {
             
                <h1 className="text-primary" id = "text-primary">SCKitchen</h1>
                <p className="text-primary"> </p>
-               <p className="text-primary" id = "text-primary">Feeding People, Not Landfills/Recovering prepared but not served food from Confernces,Events,Resturants and Food Vendors.</p>
+               <p className="text-primary" id = "text-primary">Feeding People, Not Landfills <br>
+
+               </br>Recovering prepared but not served food from Confernces,Events,Resturants and Food Vendors.</p>
             
             </Container>
           </Jumbotron>
