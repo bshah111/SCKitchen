@@ -1,85 +1,66 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+ import React, { Component } from 'react';
 
+class CountdownTimer extends React.Component {
+  constructor() {
+    super();
+    this.state = { time: {}, seconds: 7200 };
+    this.timer = 0;
+    this.startTimer = this.startTimer.bind(this);
+    this.countDown = this.countDown.bind(this);
+  }
 
-const formattedMinutes = (min) =>
-   Math.floor(min / 60) +
-    ':' +
-  ('0' + min % 60).slice(-2)
-  
+  secondsToTime(secs){
+    let hours = Math.floor(secs / (60 * 60));
+
+    let divisor_for_minutes = secs % (60 * 60);
+    let minutes = Math.floor(divisor_for_minutes / 60);
+
+    let divisor_for_seconds = divisor_for_minutes % 60;
+    let seconds = Math.ceil(divisor_for_seconds);
+
+    let obj = {
+      "h": hours,
+      "m": minutes,
+      "s": seconds
+    };
+    return obj;
+  }
+
+  componentDidMount() {
+    let timeLeftVar = this.secondsToTime(this.state.seconds);
+    this.setState({ time: timeLeftVar });
+  }
+
+  startTimer() {
+    if (this.timer == 0 && this.state.seconds > 0) {
+      this.timer = setInterval(this.countDown, 1000);
+    }
+  }
+
+  countDown() {
+    // Remove one second, set state so a re-render happens.
+    let seconds = this.state.seconds - 1;
+    this.setState({
+      time: this.secondsToTime(seconds),
+      seconds: seconds,
+    });
     
+    // Check if we're at zero.
+    if (seconds == 0) { 
+      clearInterval(this.timer);
+    }
+  }
 
-// This 
-class CountdownTimer extends Component {
-
-      constructor(props) {
-        super(props)
-
-
-        this.state = {
-          minutesElapsed: 10,
-          lastClearedIncrementer: null
-        }
-        this.incrementer = null;
-
-      }
-        
-      // start button
-      handleStartClick() {
-        if (this.state.minutesElapsed > 0 ) {
-        this.incrementer = setInterval( () => 
-        this.setState({minutesElapsed: this.state.minutesElapsed - 1
-            }), 500);
-          } else {
-            clearInterval(this.incrementer)
-          } 
-      }
-
-      handleStopClick() {
-        clearInterval(this.incrementer);
-        this.setState({
-          lastCleared: this.incrementer
-        })
-        console.log("stop button clicked")
-      }
-
-
-      handleResetClick() {
-        clearInterval(this.incrementer);
-        this.setState({
-          minutesElapsed: 0,
-        
-        })
-      }
-
-       
-      render() {
-        return(
-
-        <div className="ui card">
-          <div className="content">
-            <div className="header">
-              Timer
-            </div>
-            <div className="meta">
-              <h1 id="timer">{formattedMinutes(this.state.minutesElapsed)}</h1>          
-            </div>
-            </div>
-
-            <div className="content">
-              
-                 <button className="ui button" onClick={this.handleStartClick.bind(this)}>start</button>
-                 <button className="ui button" onClick={this.handleStopClick.bind(this)}>stop</button>
-                 <button className="ui button" onClick={this.handleResetClick.bind(this)}>reset</button>
-                 </div>
-            
-        </div> 
-        
-        )
-      }
+  render() {
+    return(
+      <div>
+        <button onClick={this.startTimer}>Start</button>
+        h: {this.state.time.h}: {this.state.time.m} s: {this.state.time.s}
+      </div>
+    );
+  }
 }
-      
-      
+
 
 
 export default CountdownTimer;
