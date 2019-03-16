@@ -4,7 +4,7 @@ import "./Profile.scss";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom"
 import API from "../../utils/API";
-
+import Timer from "../../components/Timer";
 
 class Profile extends Component {
     state = {
@@ -77,9 +77,10 @@ class Profile extends Component {
     <Label for="claimed">Already claimed</Label>
     </Col>
   </Row>
-            
+          
         </div>
-                    </div>
+            <Timer/>  
+         </div>
                     
                 ) : 
                 

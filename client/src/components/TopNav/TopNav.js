@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Jumbotron, Container,  } from 'reactstrap';
+import Wrapper from "./Wrapper";
 import "./TopNav.scss";
 import API from "../../utils/API";
 import {
@@ -14,6 +16,7 @@ import {
     DropdownMenu,
     DropdownItem,
 } from 'reactstrap';
+
 
 export default class Navigation extends Component {
 
@@ -92,7 +95,29 @@ export default class Navigation extends Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
+
+    <Wrapper>
+          <Jumbotron >
+            <Container >
+            
+               <h1 className="text-primary" id = "text-primary">Second Chance Kitchen</h1>
+               <p className="text-primary"> </p>
+               <p className="text-primary" id = "text-primary">Feeding People, Not Landfills <br>
+
+               </br>Recovering prepared but not served food from <br>
+               </br> Confernces, Events, Resturants and Food Vendors.</p>
+            
+            </Container>
+          </Jumbotron>
+      
+                 
+      </Wrapper>
+                
             </div>
+
+
+           
+
         );
     }
 }
