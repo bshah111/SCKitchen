@@ -17,7 +17,7 @@ class CountdownTimer extends Component {
 
 
         this.state = {
-          minutesElapsed: 0,
+          minutesElapsed: 10,
           lastClearedIncrementer: null
         }
         this.incrementer = null;
@@ -26,10 +26,13 @@ class CountdownTimer extends Component {
         
       // start button
       handleStartClick() {
+        if (this.state.minutesElapsed > 0 ) {
         this.incrementer = setInterval( () => 
-        this.setState({minutesElapsed: this.state.minutesElapsed + 1
-            }), 5000);
-        
+        this.setState({minutesElapsed: this.state.minutesElapsed - 1
+            }), 500);
+          } else {
+            clearInterval(this.incrementer)
+          } 
       }
 
       handleStopClick() {
@@ -37,7 +40,9 @@ class CountdownTimer extends Component {
         this.setState({
           lastCleared: this.incrementer
         })
+        console.log("stop button clicked")
       }
+
 
       handleResetClick() {
         clearInterval(this.incrementer);

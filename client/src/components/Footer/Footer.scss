@@ -3,20 +3,21 @@
 .footer {
     width: 100%;
     margin: 0 auto;
-    position: fixed;
-    bottom: -30px;
-    height: $footer-height;
+    // height: $footer-height;
     background:  #e75d19;
     box-shadow: 1px 7px 3px 8px $dark-text;
     font-family: $text-font;
     color: $light-text;
+
     p {
-        line-height: $footer-height;
-        width: 33%;
+        // line-height: $footer-height;
+        width:100%;
         margin: 0 auto;
         text-align: center;
         display: inline-block;
     }
+
+    
 
     .gh-icon {
         color: $light-text;
