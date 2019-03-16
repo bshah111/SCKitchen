@@ -77,9 +77,10 @@ class Profile extends Component {
     <Label for="claimed">Already claimed</Label>
     </Col>
   </Row>
-        <Timer/>    
+          
         </div>
-                    </div>
+            <Timer/>  
+         </div>
                     
                 ) : 
                 

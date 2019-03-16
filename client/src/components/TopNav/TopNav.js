@@ -100,11 +100,12 @@ export default class Navigation extends Component {
           <Jumbotron >
             <Container >
             
-               <h1 className="text-primary" id = "text-primary">SCKitchen</h1>
+               <h1 className="text-primary" id = "text-primary">Second Chance Kitchen</h1>
                <p className="text-primary"> </p>
                <p className="text-primary" id = "text-primary">Feeding People, Not Landfills <br>
 
-               </br>Recovering prepared but not served food from Confernces,Events,Resturants and Food Vendors.</p>
+               </br>Recovering prepared but not served food from <br>
+               </br> Confernces, Events, Resturants and Food Vendors.</p>
             
             </Container>
           </Jumbotron>
