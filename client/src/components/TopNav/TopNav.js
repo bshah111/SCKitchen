@@ -3,6 +3,8 @@ import { Jumbotron, Container,  } from 'reactstrap';
 import Wrapper from "./Wrapper";
 import "./TopNav.scss";
 import API from "../../utils/API";
+import logo from "./logo1.png";
+
 import {
     Collapse,
     Navbar,
@@ -59,7 +61,10 @@ export default class Navigation extends Component {
         return (
             <div>
                 <Navbar className="navbar" light expand="md">
-                    <NavbarBrand href="/" className="titleFont"><i className="fas fa-key"></i> SCKitchen</NavbarBrand>
+                    {/* <NavbarBrand href="/" className="titleFont"> SCKitchen</NavbarBrand> */}
+                    <div className="sck">
+                    <img src={logo} width="75" height="75"/> Second Chance Kitchen
+                    </div>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
