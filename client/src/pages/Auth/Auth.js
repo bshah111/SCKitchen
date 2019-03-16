@@ -77,6 +77,34 @@ class Auth extends Component {
       });
     }
   }
+  handleFoodUpload = event => {
+    event.preventDefault();
+    if (this.state.username && this.state.password) {
+      API.foodUpload({
+        locname: this.state.locname,
+        poc: this.state.poc,
+        pocphone: this.state.pocphone,
+        foodinfo: this.state.foodinfo,
+        meals: this.state.meals,
+        pickup: this.state.pickup,
+      }).then(user => {
+        if (user.data.loggedIn) {
+          this.setState({
+            loggedIn: true,
+            user: user.data.user
+          });
+          console.log("log in successful");
+          window.location.href = '/profile';
+        } else {
+          console.log("something went wrong :(")
+          console.log(user.data);
+          this.setState({
+            message: user.data
+          })
+        }
+      });
+    }
+  }
 
   render() {
     return (
@@ -98,6 +126,7 @@ class Auth extends Component {
               handleInputChange={this.handleInputChange}
               message={this.state.message}
             />
+
           )}
       </div>
     )
