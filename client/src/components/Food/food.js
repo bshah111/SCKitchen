@@ -122,6 +122,7 @@ class Food extends Component {
                     <div className="profileBox">
                         <h1 id="userTitle">Welcome {this.state.user.username}</h1>
                         <div>
+
                             <Row>
                                 <Col lg><Form>
                                     <FormGroup>
@@ -180,6 +181,7 @@ class Food extends Component {
                                 )}
                         </div>
                     )}
+
             </div>
 
 

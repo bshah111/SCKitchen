@@ -101,11 +101,11 @@ class Signup extends Component {
                     </FormGroup>
                     {/* if all fields are valid, allow the user to submit the form */}
                     {(this.state.validUsername && this.state.validPassword && this.state.confirmPassword) ? (
-                        <Button color="success" className="greenbtn" id="loginBtn" onClick={this.props.handleSignup} color="chocolate" block>Signup</Button>
+                        <Button color="success" className="greenbtn" id="loginBtn" onClick={this.props.handleSignup} block>Signup</Button>
      
                         
                     ) : (
-                            <Button className= "btn-success" onClick={this.props.handleSignup} color="danger" block disabled>Signup</Button>
+                         <Button color="success" className="greenbtn" id="loginBtn" onClick={this.props.handleSignup}  block disabled>Signup</Button>
                             
                         )}
                     <p className="signupLink">
