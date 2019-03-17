@@ -26,9 +26,11 @@ export default {
     return axios.get("/api/users/logout")
   },
 
-  foodUpload: function(foodinfo){
-    return axios.post("/api/users/profile",foodinfo)
+  saveFood: function(foodinfo){
+      return axios.post("/api/users/food",foodinfo)
   },
+  
+
 
   // // // api that gets a random Chuck Norris Joke
   // // ChuckNorris: function() {
