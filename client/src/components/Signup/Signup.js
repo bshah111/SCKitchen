@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
 import { Link } from "react-router-dom";
+import "./Signup.css"
 
 class Signup extends Component {
     state = {
@@ -100,12 +101,15 @@ class Signup extends Component {
                     </FormGroup>
                     {/* if all fields are valid, allow the user to submit the form */}
                     {(this.state.validUsername && this.state.validPassword && this.state.confirmPassword) ? (
-                        <Button onClick={this.props.handleSignup} color="success" block>Signup</Button>
+                        <Button color="success" className="greenbtn" id="loginBtn" onClick={this.props.handleSignup} color="chocolate" block>Signup</Button>
+     
+                        
                     ) : (
-                            <Button onClick={this.props.handleSignup} color="danger" block disabled>Signup</Button>
+                            <Button className= "btn-success" onClick={this.props.handleSignup} color="danger" block disabled>Signup</Button>
+                            
                         )}
                     <p className="signupLink">
-                        <Link to="/login">already have an account?  Sign in here</Link>
+                        <Link to="/login"className="signupLink">already have an account?  Sign in here</Link>
                     </p>
                 </Form>
             </div>
