@@ -5,6 +5,10 @@ import { Button } from "reactstrap";
 import { Link } from "react-router-dom"
 import API from "../../utils/API";
 import Timer from "../../components/Timer";
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle,ListItem } from 'reactstrap';
+  
+  
 import axios from "axios";
 
 
@@ -15,6 +19,7 @@ class Food extends Component {
         user: null,
         loading: true,
 
+        foods: [],
         locname: "",
         poc: "",
         pocphone: "",
@@ -26,6 +31,7 @@ class Food extends Component {
     componentDidMount() {
 
         this.loading();
+        this.loadFoods();
 
         API.isLoggedIn().then(user => {
             if (user.data.loggedIn) {
@@ -48,6 +54,14 @@ class Food extends Component {
             })
         }, 1000)
     }
+    loadFoods = () => {
+        API.getFoods()
+          .then(res =>
+            this.setState({ foods: res.data, locname: "", poc: "", pocphone: "",foodinfo: "",meals: "",pickup: "", })
+          )
+          .catch(err => console.log(err));
+      };
+    
 
     foodUpload = () => {
         API.foodUpload()
@@ -88,8 +102,10 @@ class Food extends Component {
                     meals: this.state.meals,
                     pickup: this.state.pickup,
             })
-            .then(res => console.log(res))
+            .then(res => this.loadFoods())
             .catch(err => console.log(err));
+            window.location.reload();
+
         }
 
         // var foodinfo = {
@@ -149,11 +165,45 @@ class Food extends Component {
                                         <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
 
-                                    <Button onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
+                                    <Button
+                                    disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                     onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
                                 </Form>
                                 </Col>
                                 <Col lg>
-                                    <Label for="claim it">Claim it!</Label>
+                                <div>
+                                
+              <h1>Claim It</h1>
+            
+            {this.state.foods.length ? (
+              <Card>
+              <CardBody>
+                {this.state.foods.map(food => {
+                  return (
+                    <CardText key={food._id}>
+                      
+                        <strong>
+                          {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
+                        </strong>
+                      
+                    </CardText>
+                    
+                  );
+
+                })}
+
+                </CardBody>
+              </Card>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+
+                                
+        
+        
+        
+                                </div>
+                                    {/* <Label for="claim it">Claim it!</Label> */}
                                 </Col>
                                 <Col lg>
                                     <Label for="claimed">Already claimed</Label>
