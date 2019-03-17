@@ -29,6 +29,9 @@ export default {
   saveFood: function(foodinfo){
       return axios.post("/api/users/food",foodinfo)
   },
+  getFoods: function(){
+    return axios.get("/api/users/food")
+  }
   
 
 
