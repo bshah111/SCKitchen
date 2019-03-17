@@ -112,7 +112,7 @@ class Food extends Component {
                         {!this.state.loading ? (
                             <>
                                 <h1>please log in</h1>
-                                <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block>Login</Button></Link>
+                                <Link className="loginLink" to="/login"><Button className="loginBtn" color=".bg-success" block>Login</Button></Link>
                             </>
                         ) : (
                             <img id="loadingIcon" src="./assets/images/loading.gif" alt="loading"/>
