@@ -2,6 +2,9 @@ const router = require("express").Router();
 const passport = require("../../config/passport");
 const db = require("../../models");
 const authMiddleware = require("../../config/middleware/authMiddleware");
+const mealController = require("../../controller/mealController");
+
+
 
 // /api/users/login
 // route to login the user
@@ -88,16 +91,24 @@ router.get("/admin", authMiddleware.isAdmin, function(req, res, next) {
   });
 });
 
-router.post("/food",function(req, res, next){
-  db.Meal({
-    locname: this.state.locname,
-        poc: this.state.poc,
-        pocphone: this.state.pocphone,
-        foodinfo: this.state.foodinfo,
-        meals: this.state.meals,
-        pickup: this.state.pickup,
+// router.post("/food",function(req, res, next){
+//   console.log(req.body);
+//   console.log(this.props);
 
-  })
-})
+//   db.Meals({
+//         locname: this.state.locname,
+//         poc: this.state.poc,
+//         pocphone: this.state.pocphone,
+//         foodinfo: this.state.foodinfo,
+//         meals: this.state.meals,
+//         pickup: this.state.pickup
+
+//   })
+// })
+router.route("/food")
+  .get(mealController.findAll)
+  .post(mealController.create);
+
+
 
 module.exports = router;

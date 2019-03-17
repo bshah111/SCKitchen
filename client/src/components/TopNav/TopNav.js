@@ -110,7 +110,7 @@ export default class Navigation extends Component {
                <p className="text-primary" id = "text-primary">Feeding People, Not Landfills <br>
 
                </br>Recovering prepared but not served food from <br>
-               </br> Confernces, Events, Resturants and Food Vendors.</p>
+               </br> Conferences, Events, Restaurants and Other Food Vendors.</p>
             
             </Container>
           </Jumbotron>

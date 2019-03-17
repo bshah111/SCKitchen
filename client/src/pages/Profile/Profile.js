@@ -57,7 +57,7 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="authBox">
+      <div className="profilePage">
         {(this.props.action === "login") ? (
           <Login
             username={this.state.username}
