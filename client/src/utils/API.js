@@ -31,6 +31,10 @@ export default {
   },
   getFoods: function(){
     return axios.get("/api/users/food")
+  },
+
+  claimIt: function(){
+    return axios.get("/api/users/food")
   }
   
 
