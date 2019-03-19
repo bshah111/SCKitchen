@@ -10,19 +10,26 @@ import {
     CardTitle, CardSubtitle, ListItem
 } from 'reactstrap';
 class Food extends Component {
-    state = {
-        loggedIn: false,
-        user: null,
-        loading: true,
-        foods: [],
-        locname: "",
-        poc: "",
-        pocphone: "",
-        foodinfo: "",
-        meals: "",
-        pickup: "",
-        claimit: false
+
+    constructor() {
+        super()
+        this.state = {
+            loggedIn: false,
+            user: null,
+            loading: true,
+            claimit: false,
+
+            foods: [],
+            locname: "",
+            poc: "",
+            pocphone: "",
+            foodinfo: "",
+            meals: "",
+            pickup: ""
+        }
     }
+    
+        
     componentDidMount() {
         this.loading();
         this.loadFoods();
@@ -80,23 +87,61 @@ class Food extends Component {
         event.preventDefault()
         if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
             API.saveFood({
-                locname: this.state.locname,
-                poc: this.state.poc,
-                pocphone: this.state.pocphone,
-                foodinfo: this.state.foodinfo,
-                meals: this.state.meals,
-                pickup: this.state.pickup,
+
+                    locname: this.state.locname,
+                    poc: this.state.poc,
+                    pocphone: this.state.pocphone,
+                    foodinfo: this.state.foodinfo,
+                    meals: this.state.meals,
+                    pickup: this.state.pickup,
+            })
+            .then(res => this.loadFoods())
+            .catch(err => console.log(err));
+            window.location.reload();
+
+        }
+
+        // var foodinfo = {
+        //     locname: this.state.locname,
+        //     poc: this.state.poc,
+        //     pocphone: this.state.pocphone,
+        //     foodinfo: this.state.foodinfo,
+        //     meals: this.state.meals,
+        //     pickup: this.state.pickup,
+        // }
+        // axios.post("/api/users/food", foodinfo)
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err));
+            
+        // console.log(this.state)
+
+
+    }
+
+    handleClaimIt = (event) => {
+        event.preventDefault()
+        this.setState(prevState => ({
+            claimit: !prevState.claimit
+           }));
+        console.log("handleClaimIt")
+
+        if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
+            console.log("in the if")
+            API.claimIt({
+                    locname: this.state.locname,
+                    poc: this.state.poc,
+                    pocphone: this.state.pocphone,
+                    foodinfo: this.state.foodinfo,
+                    meals: this.state.meals,
+                    pickup: this.state.pickup,
+                    claimIt: this.state.claimIt,
+
             })
                 .then(res => this.loadFoods())
                 .catch(err => console.log(err));
             window.location.reload();
         }
     }
-
-    
-    
-  
-
 
 
     render() {
@@ -114,6 +159,7 @@ class Food extends Component {
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="poc">Point of Contact</Label>
+
                                         <Input type="text" name="poc" id="poc" placeholder="Person of Contact" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <FormGroup>
@@ -123,6 +169,7 @@ class Food extends Component {
                                     <FormGroup>
                                         <Label for="foodinfo">Food Information</Label>
                                         <Input type="text" name="foodinfo" id="foodinfo" placeholder="Food Information" onChange={event => this.handleInput(event)} />
+
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="meals">Meals</Label>
@@ -153,6 +200,12 @@ class Food extends Component {
                           {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
                         </strong>
                       
+
+
+                        <Button
+                                    //disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                     onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button>
+
                     </CardText>
                     
                   );
