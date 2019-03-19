@@ -167,7 +167,7 @@ class Food extends Component {
                                     </FormGroup>
 
                                     <Button
-                                    disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                    className= "loginBtn" disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
                                      onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
                                 </Form>
                                 </Col>
@@ -224,7 +224,7 @@ class Food extends Component {
                             {!this.state.loading ? (
                                 <>
                                     <h1>please log in</h1>
-                                    <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block>Login</Button></Link>
+                                    <Link className="loginLink" to="/login"><Button className="loginBtn" color=".bg-success" block>Login</Button></Link>
                                 </>
                             ) : (
                                     <img id="loadingIcon" src="./assets/images/loading.gif" alt="loading" />
