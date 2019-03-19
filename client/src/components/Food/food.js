@@ -26,7 +26,6 @@ class Food extends Component {
     componentDidMount() {
         this.loading();
         this.loadFoods();
-        // this.loadClaimIt();
         API.isLoggedIn().then(user => {
             if (user.data.loggedIn) {
                 this.setState({
@@ -48,18 +47,13 @@ class Food extends Component {
     }
     loadFoods = () => {
         API.getFoods()
-            .then(res =>
-                this.setState({ foods: res.data, locname: "", poc: "", pocphone: "", foodinfo: "", meals: "", pickup: "", })
-            )
-            .catch(err => console.log(err));
-    };
-    loadClaimIt = () => {
-        API.claimIt()
-            .then(res =>
-                this.setState({ claimit: true })
-            )
-            .catch(err => console.log(err));
-    };
+          .then(res =>
+            this.setState({ foods: res.data, locname: "", poc: "", pocphone: "",foodinfo: "",meals: "",pickup: "", })
+          )
+          .catch(err => console.log(err));
+      };
+    
+
     foodUpload = () => {
         API.foodUpload()
             .then(res => this.setState({ meals: res.data }))
@@ -98,20 +92,13 @@ class Food extends Component {
             window.location.reload();
         }
     }
-    handleClaimIt = (event) => {
-        event.preventDefault()
-        console.log("handleClaimIt")
-        if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
-            console.log("in the if")
-            API.claimIt({
-                
-                claimit: this.state.claimit
-            })
-                .then(res => this.loadFoods())
-                .catch(err => console.log(err));
-            window.location.reload();
-        }
-    }
+
+    
+    
+  
+
+
+
     render() {
         return (
             <div className="profilePage">
@@ -146,41 +133,51 @@ class Food extends Component {
                                         <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <Button
-                                        className="loginBtn" disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
-                                        onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
+                                    disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                     onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
                                 </Form>
                                 </Col>
                                 <Col lg>
-                                    <div>
-                                        <h1>Claim It</h1>
-                                        {this.state.foods.length ? (
-                                            <Card>
-                                                <CardBody>
-                                                    {this.state.foods.map(food => {
-                                                        return (
-                                                            <CardText key={food._id}>
-                                                                <strong>
-                                                                    <Timer />
-                                                                    <br></br>
-                                                                    Point of Contact: {food.poc}<br></br> Phone#: {food.pocphone}<br></br>Food Info: {food.foodinfo}<br></br>Location: {food.locname}
-                                                                </strong>
-                                                                <Button
-                                                                    onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button>
-                                                            </CardText>
-                                                        );
-                                                    })}
-                                                </CardBody>
-                                            </Card>
-                                        ) : (
-                                                <h3>No Results to Display</h3>
-                                            )}
-                                    </div>
+                                <div>
+                                
+              <h1>Claim It</h1>
+            
+            {this.state.foods.length ? (
+              <Card>
+              <CardBody>
+                {this.state.foods.map(food => {
+                  return (
+                    <CardText key={food._id}>
+                      
+                        <strong>
+                          {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
+                        </strong>
+                      
+                    </CardText>
+                    
+                  );
+
+                })}
+
+                </CardBody>
+              </Card>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+
+                                
+        
+        
+        
+                                </div>
+                                    {/* <Label for="claim it">Claim it!</Label> */}
                                 </Col>
-                                <Col>
-                                <h1>Already Claimed</h1>
+                                <Col lg>
+                                    <Label for="claimed">Already claimed</Label>
                                 </Col>
                             </Row>
                         </div>
+                        <Timer />
                     </div>
                 ) :
                     (
@@ -188,7 +185,7 @@ class Food extends Component {
                             {!this.state.loading ? (
                                 <>
                                     <h1>please log in</h1>
-                                    <Link className="loginLink" to="/login"><Button className="loginBtn" color=".bg-success" block>Login</Button></Link>
+                                    <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block>Login</Button></Link>
                                 </>
                             ) : (
                                     <img id="loadingIcon" src="./assets/images/loading.gif" alt="loading" />
