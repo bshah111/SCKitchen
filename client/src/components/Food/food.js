@@ -32,8 +32,6 @@ class Food extends Component {
 
         this.loading();
         this.loadFoods();
-        this.loadClaimIt();
-        
 
         API.isLoggedIn().then(user => {
             if (user.data.loggedIn) {
@@ -58,14 +56,6 @@ class Food extends Component {
     }
     loadFoods = () => {
         API.getFoods()
-          .then(res =>
-            this.setState({ foods: res.data, locname: "", poc: "", pocphone: "",foodinfo: "",meals: "",pickup: "", })
-          )
-          .catch(err => console.log(err));
-      };
-
-      loadClaimIt = () => {
-        API.claimIt()
           .then(res =>
             this.setState({ foods: res.data, locname: "", poc: "", pocphone: "",foodinfo: "",meals: "",pickup: "", })
           )
@@ -135,29 +125,6 @@ class Food extends Component {
 
     }
 
-    handleClaimIt = (event) => {
-        event.preventDefault()
-        console.log("handleClaimIt")
-
-        if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
-            console.log("in the if")
-            API.claimIt({
-                    locname: this.state.locname,
-                    poc: this.state.poc,
-                    pocphone: this.state.pocphone,
-                    foodinfo: this.state.foodinfo,
-                    meals: this.state.meals,
-                    pickup: this.state.pickup,
-            })
-            .then(res => this.loadFoods())
-            .catch(err => console.log(err));
-            window.location.reload();
-
-        }
-    }
-
-    
-
     
     
   
@@ -180,27 +147,27 @@ class Food extends Component {
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="poc">Point of Contact</Label>
-                                        <Input type="text" name="poc" id="poc" placeholder="Person of Contact" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)}/>
+                                        <Input type="text" name="poc" id="poc" placeholder="Person of Contact" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="pocphone">Contact's Phone</Label>
-                                        <Input type="text" name="pocphone" id="pocphone" placeholder="Phone Number" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)} />
+                                        <Input type="text" name="pocphone" id="pocphone" placeholder="Phone Number" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="foodinfo">Food Information</Label>
-                                        <Input type="text" name="foodinfo" id="foodinfo" placeholder="Food Information" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)} />
+                                        <Input type="text" name="foodinfo" id="foodinfo" placeholder="Food Information" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="meals">Meals</Label>
-                                        <Input type="text" name="meals" id="meals" placeholder="Number of meals" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)} />
+                                        <Input type="text" name="meals" id="meals" placeholder="Number of meals" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="pickup">Pick Up</Label>
-                                        <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)} />
+                                        <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
 
                                     <Button
-                                    className= "loginBtn" disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                    disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
                                      onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
                                 </Form>
                                 </Col>
@@ -217,19 +184,9 @@ class Food extends Component {
                     <CardText key={food._id}>
                       
                         <strong>
-
-                        <span></span><Timer />
-                        
-                        <br></br>
                           {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
-                         
                         </strong>
                       
-
-                        <Button
-                                    // disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
-                                     onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button>
-
                     </CardText>
                     
                   );
@@ -247,57 +204,15 @@ class Food extends Component {
         
         
                                 </div>
+                                    {/* <Label for="claim it">Claim it!</Label> */}
                                 </Col>
-
                                 <Col lg>
-                                <div>
-                                
-              {<h1>Already Claimed</h1>
-            
-            /* {this.state.foods.length ? (
-              <Card>
-              <CardBody>
-                {this.state.foods.map(food => {
-                  return (
-                    <CardText key={food._id}>
-                      
-                        <strong>
-                          {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
-                        </strong>
-                      
-
-                        {/* <Button
-                                    // disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
-                                     onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button> */}
-
-                    {/* </CardText>
-                    
-                  );
-
-                })}
-
-                </CardBody>
-              </Card>
-            ) : (
-              <h3>No Results to Display</h3>
-            )} */}
-
-                                
-        
-        
-        
-                                </div>
-                                </Col>
-
-
-
-                                {/* <Col lg>
                                     <Label for="claimed">Already claimed</Label>
-                                </Col> */}
+                                </Col>
                             </Row>
 
                         </div>
-                        
+                        <Timer />
                     </div>
 
                 ) :
@@ -309,7 +224,7 @@ class Food extends Component {
                             {!this.state.loading ? (
                                 <>
                                     <h1>please log in</h1>
-                                    <Link className="loginLink" to="/login"><Button className="loginBtn" color=".bg-success" block>Login</Button></Link>
+                                    <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block>Login</Button></Link>
                                 </>
                             ) : (
                                     <img id="loadingIcon" src="./assets/images/loading.gif" alt="loading" />
