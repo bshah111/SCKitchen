@@ -14,19 +14,27 @@ import axios from "axios";
 
 
 class Food extends Component {
-    state = {
-        loggedIn: false,
-        user: null,
-        loading: true,
+    constructor() {
+        super()
+        this.state = {
+            loggedIn: false,
+            user: null,
+            loading: true,
+            claimit: false,
 
-        foods: [],
-        locname: "",
-        poc: "",
-        pocphone: "",
-        foodinfo: "",
-        meals: "",
-        pickup: ""
+            foods: [],
+            locname: "",
+            poc: "",
+            pocphone: "",
+            foodinfo: "",
+            meals: "",
+            pickup: ""
+        }
     }
+    
+        
+
+     
 
     componentDidMount() {
 
@@ -137,6 +145,9 @@ class Food extends Component {
 
     handleClaimIt = (event) => {
         event.preventDefault()
+        this.setState(prevState => ({
+            claimit: !prevState.claimit
+           }));
         console.log("handleClaimIt")
 
         if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
@@ -148,6 +159,7 @@ class Food extends Component {
                     foodinfo: this.state.foodinfo,
                     meals: this.state.meals,
                     pickup: this.state.pickup,
+                    claimIt: this.state.claimIt,
             })
             .then(res => this.loadFoods())
             .catch(err => console.log(err));
@@ -157,11 +169,6 @@ class Food extends Component {
     }
 
     
-
-    
-    
-  
-
 
 
     render() {
@@ -180,23 +187,23 @@ class Food extends Component {
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="poc">Point of Contact</Label>
-                                        <Input type="text" name="poc" id="poc" placeholder="Person of Contact" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)}/>
+                                        <Input type="text" name="poc" id="poc" placeholder="Person of Contact" onChange={event => this.handleInput(event)}/>
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="pocphone">Contact's Phone</Label>
-                                        <Input type="text" name="pocphone" id="pocphone" placeholder="Phone Number" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)} />
+                                        <Input type="text" name="pocphone" id="pocphone" placeholder="Phone Number" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="foodinfo">Food Information</Label>
-                                        <Input type="text" name="foodinfo" id="foodinfo" placeholder="Food Information" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)} />
+                                        <Input type="text" name="foodinfo" id="foodinfo" placeholder="Food Information" onChange={event => this.handleInput(event)}  />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="meals">Meals</Label>
-                                        <Input type="text" name="meals" id="meals" placeholder="Number of meals" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)} />
+                                        <Input type="text" name="meals" id="meals" placeholder="Number of meals" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="pickup">Pick Up</Label>
-                                        <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" onChange={event => this.handleInput(event)} onChange={event => this.handleClaimIt(event)} />
+                                        <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
 
                                     <Button
@@ -227,8 +234,9 @@ class Food extends Component {
                       
 
                         <Button
-                                    // disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                    //disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
                                      onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button>
+
 
                     </CardText>
                     
