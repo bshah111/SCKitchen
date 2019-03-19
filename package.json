@@ -44,7 +44,7 @@
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.9"
   },
-  "engines":{
-    "node":"^8.11.4"
+  "engines": {
+    "node": "^8.11.4"
   }
 }
