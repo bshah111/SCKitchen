@@ -28,8 +28,8 @@ class Food extends Component {
             pickup: ""
         }
     }
-    
-        
+
+
     componentDidMount() {
         this.loading();
         this.loadFoods();
@@ -54,12 +54,12 @@ class Food extends Component {
     }
     loadFoods = () => {
         API.getFoods()
-          .then(res =>
-            this.setState({ foods: res.data, locname: "", poc: "", pocphone: "",foodinfo: "",meals: "",pickup: "", })
-          )
-          .catch(err => console.log(err));
-      };
-    
+            .then(res =>
+                this.setState({ foods: res.data, locname: "", poc: "", pocphone: "", foodinfo: "", meals: "", pickup: "", })
+            )
+            .catch(err => console.log(err));
+    };
+
 
     foodUpload = () => {
         API.foodUpload()
@@ -88,60 +88,48 @@ class Food extends Component {
         if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
             API.saveFood({
 
-                    locname: this.state.locname,
-                    poc: this.state.poc,
-                    pocphone: this.state.pocphone,
-                    foodinfo: this.state.foodinfo,
-                    meals: this.state.meals,
-                    pickup: this.state.pickup,
-            })
-            .then(res => this.loadFoods())
-            .catch(err => console.log(err));
-            window.location.reload();
-
-        }
-
-        // var foodinfo = {
-        //     locname: this.state.locname,
-        //     poc: this.state.poc,
-        //     pocphone: this.state.pocphone,
-        //     foodinfo: this.state.foodinfo,
-        //     meals: this.state.meals,
-        //     pickup: this.state.pickup,
-        // }
-        // axios.post("/api/users/food", foodinfo)
-        // .then(res => console.log(res))
-        // .catch(err => console.log(err));
-            
-        // console.log(this.state)
-
-
-    }
-
-    handleClaimIt = (event) => {
-        event.preventDefault()
-        this.setState(prevState => ({
-            claimit: !prevState.claimit
-           }));
-        console.log("handleClaimIt")
-
-        if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
-            console.log("in the if")
-            API.claimIt({
-                    locname: this.state.locname,
-                    poc: this.state.poc,
-                    pocphone: this.state.pocphone,
-                    foodinfo: this.state.foodinfo,
-                    meals: this.state.meals,
-                    pickup: this.state.pickup,
-                    claimIt: this.state.claimIt,
-
+                locname: this.state.locname,
+                poc: this.state.poc,
+                pocphone: this.state.pocphone,
+                foodinfo: this.state.foodinfo,
+                meals: this.state.meals,
+                pickup: this.state.pickup,
             })
                 .then(res => this.loadFoods())
                 .catch(err => console.log(err));
             window.location.reload();
+
         }
+
+       
+
+
     }
+
+    // handleClaimIt = (event) => {
+    //     event.preventDefault()
+    //     this.setState(prevState => ({
+    //         claimit: !prevState.claimit
+    //     }));
+    //     console.log("handleClaimIt")
+
+    //     if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
+    //         console.log("in the if")
+    //         API.claimIt({
+    //             locname: this.state.locname,
+    //             poc: this.state.poc,
+    //             pocphone: this.state.pocphone,
+    //             foodinfo: this.state.foodinfo,
+    //             meals: this.state.meals,
+    //             pickup: this.state.pickup,
+    //             claimIt: this.state.claimIt,
+
+    //         })
+    //             .then(res => this.loadFoods())
+    //             .catch(err => console.log(err));
+    //         window.location.reload();
+    //     }
+    // }
 
 
     render() {
@@ -180,49 +168,49 @@ class Food extends Component {
                                         <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <Button
-                                    disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
-                                     onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
+                                        disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                        onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
                                 </Form>
                                 </Col>
                                 <Col lg>
-                                <div>
-                                
-              <h1>Claim It</h1>
-            
-            {this.state.foods.length ? (
-              <Card>
-              <CardBody>
-                {this.state.foods.map(food => {
-                  return (
-                    <CardText key={food._id}>
-                      
-                        <strong>
-                          {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
-                        </strong>
-                      
+                                    <div>
+
+                                        <h1>Claim It</h1>
+
+                                        {this.state.foods.length ? (
+                                            <Card>
+                                                <CardBody>
+                                                    {this.state.foods.map(food => {
+                                                        return (
+                                                            <CardText key={food._id}>
+
+                                                                <strong>
+                                                                    {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
+                                                                </strong>
 
 
-                        <Button
-                                    //disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
-                                     onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button>
 
-                    </CardText>
-                    
-                  );
+                                                                <Button
+                                                                    //disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                                                    onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button>
 
-                })}
+                                                            </CardText>
 
-                </CardBody>
-              </Card>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+                                                        );
 
-                                
-        
-        
-        
-                                </div>
+                                                    })}
+
+                                                </CardBody>
+                                            </Card>
+                                        ) : (
+                                                <h3>No Results to Display</h3>
+                                            )}
+
+
+
+
+
+                                    </div>
                                     {/* <Label for="claim it">Claim it!</Label> */}
                                 </Col>
                                 <Col lg>

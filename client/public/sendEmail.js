@@ -20,7 +20,7 @@ module.exports = function sendEmail() {
     const mailOptions = {
         from: 'SCKitchen1864@gmail.com',
         to: emailList,
-        subject: "SC Kitchen has a new listing!"
+        subject: "SC Kitchen has a new listing!",
         html: message,
     };
     transport.sendMail(mailOptions, (error) => {
@@ -30,29 +30,3 @@ module.exports = function sendEmail() {
         // console.log(`Message sent: ${info.response}`);
     });
 };
-
-//from W3 schools
-// var nodemailer = require('nodemailer');
-
-// var transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: 'youremail@gmail.com',
-//     pass: 'yourpassword'
-//   }
-// });
-
-// var mailOptions = {
-//   from: 'youremail@gmail.com',
-//   to: 'myfriend@yahoo.com',
-//   subject: 'Sending Email using Node.js',
-//   text: 'That was easy!'
-// };
-
-// transporter.sendMail(mailOptions, function(error, info){
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log('Email sent: ' + info.response);
-//   }
-// });
