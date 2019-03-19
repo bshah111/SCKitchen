@@ -5,15 +5,12 @@ import { Button } from "reactstrap";
 import { Link } from "react-router-dom"
 import API from "../../utils/API";
 import Timer from "../../components/Timer";
-import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle,ListItem } from 'reactstrap';
-  
-  
-import axios from "axios";
-
-
-
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, ListItem
+} from 'reactstrap';
 class Food extends Component {
+
     constructor() {
         super()
         this.state = {
@@ -33,16 +30,9 @@ class Food extends Component {
     }
     
         
-
-     
-
     componentDidMount() {
-
         this.loading();
         this.loadFoods();
-        this.loadClaimIt();
-        
-
         API.isLoggedIn().then(user => {
             if (user.data.loggedIn) {
                 this.setState({
@@ -53,10 +43,8 @@ class Food extends Component {
         }).catch(err => {
             console.log(err);
         });
-
         console.log(this.props)
     }
-
     loading() {
         setTimeout(() => {
             this.setState({
@@ -71,14 +59,6 @@ class Food extends Component {
           )
           .catch(err => console.log(err));
       };
-
-      loadClaimIt = () => {
-        API.claimIt()
-          .then(res =>
-            this.setState({ foods: res.data, locname: "", poc: "", pocphone: "",foodinfo: "",meals: "",pickup: "", })
-          )
-          .catch(err => console.log(err));
-      };
     
 
     foodUpload = () => {
@@ -86,16 +66,14 @@ class Food extends Component {
             .then(res => this.setState({ meals: res.data }))
             .catch(err => console.log(err));
     };
-
     handleInput = (event) => {
-
         var name = event.target.name
         var value = event.target.value
         if (name === "locname") {
             this.setState({ locname: value })
         } else if (name === "poc") {
             this.setState({ poc: value })
-        }else if (name === "pocphone") {
+        } else if (name === "pocphone") {
             this.setState({ pocphone: value })
         } else if (name === "foodinfo") {
             this.setState({ foodinfo: value })
@@ -105,14 +83,11 @@ class Food extends Component {
             this.setState({ pickup: value })
         }
     }
-
     handleUpload = (event) => {
         event.preventDefault()
-        console.log("handleUpload")
-
         if (this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup) {
-            console.log("in the if")
             API.saveFood({
+
                     locname: this.state.locname,
                     poc: this.state.poc,
                     pocphone: this.state.pocphone,
@@ -160,15 +135,13 @@ class Food extends Component {
                     meals: this.state.meals,
                     pickup: this.state.pickup,
                     claimIt: this.state.claimIt,
-            })
-            .then(res => this.loadFoods())
-            .catch(err => console.log(err));
-            window.location.reload();
 
+            })
+                .then(res => this.loadFoods())
+                .catch(err => console.log(err));
+            window.location.reload();
         }
     }
-
-    
 
 
     render() {
@@ -178,16 +151,16 @@ class Food extends Component {
                     <div className="profileBox">
                         <h1 id="userTitle">Welcome {this.state.user.username}</h1>
                         <div>
-
                             <Row>
                                 <Col lg><Form>
                                     <FormGroup>
                                         <Label for="locname">Location Name</Label>
-                                        <Input onChange={event => this.handleInput(event)} type="text" name="locname" id="locname" placeholder="Location Name" width = "100" />
+                                        <Input onChange={event => this.handleInput(event)} type="text" name="locname" id="locname" placeholder="Location Name" width="100" />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="poc">Point of Contact</Label>
-                                        <Input type="text" name="poc" id="poc" placeholder="Person of Contact" onChange={event => this.handleInput(event)}/>
+
+                                        <Input type="text" name="poc" id="poc" placeholder="Person of Contact" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="pocphone">Contact's Phone</Label>
@@ -195,7 +168,8 @@ class Food extends Component {
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="foodinfo">Food Information</Label>
-                                        <Input type="text" name="foodinfo" id="foodinfo" placeholder="Food Information" onChange={event => this.handleInput(event)}  />
+                                        <Input type="text" name="foodinfo" id="foodinfo" placeholder="Food Information" onChange={event => this.handleInput(event)} />
+
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="meals">Meals</Label>
@@ -205,9 +179,8 @@ class Food extends Component {
                                         <Label for="pickup">Pick Up</Label>
                                         <Input type="text" name="pickup" id="pickup" placeholder="Pick Up Instructions" onChange={event => this.handleInput(event)} />
                                     </FormGroup>
-
                                     <Button
-                                    className= "loginBtn" disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
+                                    disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
                                      onClick={(event) => this.handleUpload(event)} color="success" block>Food Upload</Button>
                                 </Form>
                                 </Col>
@@ -224,19 +197,14 @@ class Food extends Component {
                     <CardText key={food._id}>
                       
                         <strong>
-
-                        <span></span><Timer />
-                        
-                        <br></br>
                           {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
-                         
                         </strong>
                       
+
 
                         <Button
                                     //disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
                                      onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button>
-
 
                     </CardText>
                     
@@ -255,82 +223,30 @@ class Food extends Component {
         
         
                                 </div>
+                                    {/* <Label for="claim it">Claim it!</Label> */}
                                 </Col>
-
                                 <Col lg>
-                                <div>
-                                
-              {<h1>Already Claimed</h1>
-            
-            /* {this.state.foods.length ? (
-              <Card>
-              <CardBody>
-                {this.state.foods.map(food => {
-                  return (
-                    <CardText key={food._id}>
-                      
-                        <strong>
-                          {food.poc} , {food.pocphone},{food.foodinfo} at {food.locname}
-                        </strong>
-                      
-
-                        {/* <Button
-                                    // disabled={!(this.state.locname && this.state.poc && this.state.pocphone && this.state.foodinfo && this.state.meals && this.state.pickup)}
-                                     onClick={(event) => this.handleClaimIt(event)} color="success" block>Claim It!</Button> */}
-
-                    {/* </CardText>
-                    
-                  );
-
-                })}
-
-                </CardBody>
-              </Card>
-            ) : (
-              <h3>No Results to Display</h3>
-            )} */}
-
-                                
-        
-        
-        
-                                </div>
-                                </Col>
-
-
-
-                                {/* <Col lg>
                                     <Label for="claimed">Already claimed</Label>
-                                </Col> */}
+                                </Col>
                             </Row>
-
                         </div>
-                        
+                        <Timer />
                     </div>
-
                 ) :
-
-
-
                     (
                         <div className="noUser">
                             {!this.state.loading ? (
                                 <>
                                     <h1>please log in</h1>
-                                    <Link className="loginLink" to="/login"><Button className="loginBtn" color=".bg-success" block>Login</Button></Link>
+                                    <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block>Login</Button></Link>
                                 </>
                             ) : (
                                     <img id="loadingIcon" src="./assets/images/loading.gif" alt="loading" />
                                 )}
                         </div>
                     )}
-
             </div>
-
-
         )
-
-
     }
 }
 
