@@ -45,6 +45,11 @@ const mealSchema = new Schema({
   required: [true, "pick up instructions is required"]
 },
 
+claimit: {
+  type: Boolean,
+  default: false
+},
+
   admin: {
     type: Boolean,
     unique: false,

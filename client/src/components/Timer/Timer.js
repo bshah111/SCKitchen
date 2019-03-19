@@ -54,8 +54,8 @@ class CountdownTimer extends React.Component {
   render() {
     return(
       <div>
-        <button onClick={this.startTimer}>Start</button>
-        h: {this.state.time.h}: {this.state.time.m} s: {this.state.time.s}
+        <button className= "timerbtn" onClick={this.startTimer}>Start</button>
+        &nbsp; &nbsp;h: {this.state.time.h}: {this.state.time.m} s: {this.state.time.s}
       </div>
     );
   }
