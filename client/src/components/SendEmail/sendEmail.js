@@ -4,10 +4,9 @@ const emailDB = require("../../../../models/Users");
 const encryptedPassword = '126891c03fef8f5fc1e1d8714d82bb';
 var emailList = [];
 
-function pullEmails () {
+function pullEmails() {
     emailList.push(emailDB.findmany({ users: (email) }))
 }
-
 const transport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -32,29 +31,3 @@ function sendEmail() {
 };
 
 export default sendEmail;
-
-//from W3 schools
-// var nodemailer = require('nodemailer');
-
-// var transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: 'youremail@gmail.com',
-//     pass: 'yourpassword'
-//   }
-// });
-
-// var mailOptions = {
-//   from: 'youremail@gmail.com',
-//   to: 'myfriend@yahoo.com',
-//   subject: 'Sending Email using Node.js',
-//   text: 'That was easy!'
-// };
-
-// transporter.sendMail(mailOptions, function(error, info){
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log('Email sent: ' + info.response);
-//   }
-// });
