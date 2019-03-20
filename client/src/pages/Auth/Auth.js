@@ -47,7 +47,6 @@ class Auth extends Component {
       });
     }
   }
-
   handleSignup = event => {
     event.preventDefault();
     if (this.state.username && this.state.password) {
@@ -105,7 +104,6 @@ class Auth extends Component {
       });
     }
   }
-
   render() {
     return (
       <div className="authBox">
@@ -126,7 +124,6 @@ class Auth extends Component {
               handleInputChange={this.handleInputChange}
               message={this.state.message}
             />
-
           )}
       </div>
     )

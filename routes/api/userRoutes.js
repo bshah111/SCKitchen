@@ -91,20 +91,6 @@ router.get("/admin", authMiddleware.isAdmin, function(req, res, next) {
   });
 });
 
-// router.post("/food",function(req, res, next){
-//   console.log(req.body);
-//   console.log(this.props);
-
-//   db.Meals({
-//         locname: this.state.locname,
-//         poc: this.state.poc,
-//         pocphone: this.state.pocphone,
-//         foodinfo: this.state.foodinfo,
-//         meals: this.state.meals,
-//         pickup: this.state.pickup
-
-//   })
-// })
 router.route("/food")
   .get(mealController.findAll)
   .post(mealController.create);

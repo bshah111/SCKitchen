@@ -1,27 +1,15 @@
 import React, { Component } from "react";
-import { Jumbotron, Container,  } from 'reactstrap';
+import { Jumbotron, Container, } from 'reactstrap';
 import Wrapper from "./Wrapper";
 import "./TopNav.scss";
 import API from "../../utils/API";
 import logo from "./logo1.png";
-
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
+    Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
+    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
 
-
 export default class Navigation extends Component {
-
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
@@ -30,7 +18,6 @@ export default class Navigation extends Component {
             loggedIn: false
         };
     }
-
     componentDidMount() {
         API.isLoggedIn().then(user => {
             if (user.data.loggedIn) {
@@ -42,28 +29,25 @@ export default class Navigation extends Component {
             console.log(err);
         });
     }
-
     logout() {
-        API.logout().then((data)=> {
+        API.logout().then((data) => {
             window.location.pathname = "/"
-        }).catch((err)=> {
+        }).catch((err) => {
             console.log(err)
         })
     }
-
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
-
     render() {
         return (
             <div>
                 <Navbar className="navbar" light expand="md">
                     {/* <NavbarBrand href="/" className="titleFont"> SCKitchen</NavbarBrand> */}
                     <div className="sck">
-                    <img src={logo} width="75" height="75"/> Second Chance Kitchen
+                        <img src={logo} width="75" height="75" /> Second Chance Kitchen
                     </div>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -86,43 +70,32 @@ export default class Navigation extends Component {
                                             </DropdownItem>
                                         </>
                                     ) : (
-                                        <>
-                                            <DropdownItem>
-                                                <NavLink href="/login">login</NavLink>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <NavLink href="/signup">signup</NavLink>
-                                            </DropdownItem>
-                                        </>
-                                    )}
+                                            <>
+                                                <DropdownItem>
+                                                    <NavLink href="/login">login</NavLink>
+                                                </DropdownItem>
+                                                <DropdownItem>
+                                                    <NavLink href="/signup">signup</NavLink>
+                                                </DropdownItem>
+                                            </>
+                                        )}
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </Nav>
                     </Collapse>
                 </Navbar>
-
-    <Wrapper>
-          <Jumbotron >
-            <Container >
-            
-               <h1 className="text-primary" id = "text-primary">Second Chance Kitchen</h1>
-               <p className="text-primary"> </p>
-               <p className="text-primary" id = "text-primary">Feeding People, Not Landfills <br>
-
-               </br>Recovering prepared but not served food from <br>
-               </br> Conferences, Events, Restaurants and Other Food Vendors.</p>
-            
-            </Container>
-          </Jumbotron>
-      
-                 
-      </Wrapper>
-                
+                <Wrapper>
+                    <Jumbotron >
+                        <Container >
+                            <h1 className="text-primary" id="text-primary">Second Chance Kitchen</h1>
+                            <p className="text-primary"> </p>
+                            <p className="text-primary" id="text-primary">Feeding People, Not Landfills <br>
+                            </br>Recovering prepared but not served food from <br>
+                                </br> Conferences, Events, Restaurants and Other Food Vendors.</p>
+                        </Container>
+                    </Jumbotron>
+                </Wrapper>
             </div>
-
-
-           
-
         );
     }
 }
