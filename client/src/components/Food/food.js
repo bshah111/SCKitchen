@@ -117,11 +117,11 @@ class Food extends Component {
             <div className="profilePage">
                 {this.state.loggedIn ? (
                     <div className="profileBox">
-                        <h1 id="userTitle">Welcome {this.state.user.username}</h1>
+                        <h4 id="userTitle">Welcome {this.state.user.username}</h4>
                         <div>
                             <Row>
                                 <Col lg>
-                                <h1>Food Upload</h1>
+                                <h4>Food Upload</h4>
                                 <Form>
                                     <FormGroup>
                                         <Label for="locname">Location Name</Label>
@@ -154,7 +154,7 @@ class Food extends Component {
                                 </Col>
                                 <Col lg>
                                     <div>
-                                        <h1>Claim It</h1>
+                                        <h4>Claim It</h4>
                                         {this.state.foods.length ? (
                                             <div>
                                             <Card>
@@ -167,8 +167,8 @@ class Food extends Component {
                                                                     <br></br>
                                                                     Point of Contact: {food.poc}<br></br> Phone#: {food.pocphone}<br></br>Food Info: {food.foodinfo}<br></br>Location: {food.locname}
                                                                 </strong>
-                                                                {/* <Button disabled={(this.state.claimit)}
-                                                                    onClick={(event) => this.handleUpload(event)} color="success" block>Claim It!</Button> */}
+                                                                <Button 
+                                                                    onClick={(event) => this.handleUpload(event)} color="success" block>Claim It!</Button>
                                                             </CardText>
                                                         );
                                                     })}
@@ -181,7 +181,7 @@ class Food extends Component {
                                     </div>
                                 </Col>
                                 <Col>
-                                <h1>Already Claimed</h1>
+                                <h4>Already Claimed</h4>
                                 </Col>
                             </Row>
                         </div>
@@ -191,7 +191,7 @@ class Food extends Component {
                         <div className="noUser">
                             {!this.state.loading ? (
                                 <>
-                                    <h1>please log in</h1>
+                                    <h4>please log in</h4>
                                     <Link className="loginLink" to="/login"><Button className="loginBtn" color=".bg-success" block>Login</Button></Link>
                                 </>
                             ) : (
